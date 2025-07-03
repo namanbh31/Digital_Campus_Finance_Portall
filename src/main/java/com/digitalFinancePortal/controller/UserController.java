@@ -47,14 +47,14 @@ public class UserController {
     public String getLogin() {
         return "home";
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/register")
     public String getRegistrationForm(Model model){
        model.addAttribute("user", new User());
        model.addAttribute("userType", UserType.values());
        return "registrationForm";
    }
-   @PreAuthorize("hasRole('ADMIN')")
+//    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/register")
     public String postRegistrationForm(@ModelAttribute("user") User newuser, BindingResult result, Model model){
         Optional<User> user = userRepository.findById(Long.parseLong(newuser.getAccountNumber().toString()));
