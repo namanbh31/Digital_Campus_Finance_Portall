@@ -112,7 +112,7 @@ public class UserController {
     public String addBalance(Principal principal, @ModelAttribute AddBalanceRequest addBalanceRequest, Model model){
        User user = userRepository.findById(Long.parseLong(principal.getName())).get();
        Optional<User> userToUpdate = userRepository.findById(addBalanceRequest.getAccountNumber());
-       if(userToUpdate.isEmpty()){
+       if(userToUpdate.isEmpty() || addBalanceRequest.getBalance()<0){
            return "redirect:/add-balance";
        }
        Optional<User> updatedUser;
